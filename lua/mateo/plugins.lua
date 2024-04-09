@@ -66,5 +66,9 @@ require("lazy").setup({
     {
         'NvChad/nvim-colorizer.lua',
         config = function() require('colorizer').setup() end
+    },
+    {
+        'codota/tabnine-nvim',
+        build = "./dl_binaries.sh"
     }
 })
