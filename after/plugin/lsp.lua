@@ -52,16 +52,17 @@ cmp.setup({
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
+    local set = vim.keymap.set
 
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "ff", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "<C-]>", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "<C-[>", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>ra", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("n", "<leader>q", function() vim.diagnostic.setloclist() end, opts)
+    set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+    set("n", "K", function() vim.lsp.buf.hover() end, opts)
+    set("n", "ff", function() vim.diagnostic.open_float() end, opts)
+    set("n", "<C-]>", function() vim.diagnostic.goto_next() end, opts)
+    set("n", "<C-[>", function() vim.diagnostic.goto_prev() end, opts)
+    set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+    set("n", "gr", function() vim.lsp.buf.references() end, opts)
+    set("n", "<leader>ra", function() vim.lsp.buf.rename() end, opts)
+    set("n", "<leader>q", function() vim.diagnostic.setloclist() end, opts)
     lsp.async_autoformat(client, bufnr)
 end)
 

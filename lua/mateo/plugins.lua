@@ -70,5 +70,11 @@ require("lazy").setup({
     {
         'codota/tabnine-nvim',
         build = "./dl_binaries.sh"
+    },
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
     }
 })
