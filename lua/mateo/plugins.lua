@@ -38,7 +38,10 @@ require("lazy").setup({
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lua' },
             -- Snippets
-            { 'L3MON4D3/LuaSnip' },
+            {
+                'L3MON4D3/LuaSnip',
+                build = "make install_jsregexp"
+            },
             { 'rafamadriz/friendly-snippets' },
         }
     },
@@ -66,10 +69,6 @@ require("lazy").setup({
     {
         'NvChad/nvim-colorizer.lua',
         config = function() require('colorizer').setup() end
-    },
-    {
-        'codota/tabnine-nvim',
-        build = "./dl_binaries.sh"
     },
     {
         'stevearc/oil.nvim',
