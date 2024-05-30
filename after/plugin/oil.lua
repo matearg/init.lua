@@ -5,4 +5,3 @@ require("oil").setup({
 
 local set = vim.keymap.set
 set("n", "-", "<CMD>Oil<CR>")
-set("n", "<leader>e", "<CMD>Oil<CR>")
