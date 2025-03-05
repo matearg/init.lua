@@ -75,5 +75,8 @@ require("lazy").setup({
         opts = {},
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+    {
+        "github/copilot.vim",
     }
 })
