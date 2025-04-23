@@ -28,6 +28,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+    desc = "Format on save",
+    pattern = "*",
+    callback = function()
+        vim.lsp.buf.format({ async = true })
+    end
+})
+
 require('mason').setup()
 local mason = require('mason-lspconfig')
 mason.setup({
