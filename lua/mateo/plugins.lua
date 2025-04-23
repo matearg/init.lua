@@ -43,6 +43,7 @@ require("lazy").setup({
                 build = "make install_jsregexp"
             },
             { 'rafamadriz/friendly-snippets' },
+            { 'onsails/lspkind.nvim' }
         }
     },
     {

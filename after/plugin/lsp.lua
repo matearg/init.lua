@@ -2,30 +2,30 @@
 -- This should be executed before you configure any language server
 local lspconfig_defaults = require('lspconfig').util.default_config
 lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-  'force',
-  lspconfig_defaults.capabilities,
-  require('cmp_nvim_lsp').default_capabilities()
+    'force',
+    lspconfig_defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities()
 )
 
 -- This is where you enable features that only work
 -- if there is a language server active in the file
 vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'LSP actions',
-  callback = function(event)
-    local opts = {buffer = event.buf}
-    local set = vim.keymap.set
+    desc = 'LSP actions',
+    callback = function(event)
+        local opts = { buffer = event.buf }
+        local set = vim.keymap.set
 
-    set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    set("n", "ff", function() vim.diagnostic.open_float() end, opts)
-    set("n", "<C-]>", function() vim.diagnostic.goto_next() end, opts)
-    set("n", "<C-[>", function() vim.diagnostic.goto_prev() end, opts)
-    set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-    set("n", "gr", function() vim.lsp.buf.references() end, opts)
-    set("n", "<leader>ra", function() vim.lsp.buf.rename() end, opts)
-    set("n", "<leader>q", function() vim.diagnostic.setloclist() end, opts)
-    set({'n', 'x'}, "<leader>fm", function() vim.lsp.buf.format({async = true}) end, opts)
-  end,
+        set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        set("n", "K", function() vim.lsp.buf.hover() end, opts)
+        set("n", "ff", function() vim.diagnostic.open_float() end, opts)
+        set("n", "<C-]>", function() vim.diagnostic.goto_next() end, opts)
+        set("n", "<C-[>", function() vim.diagnostic.goto_prev() end, opts)
+        set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+        set("n", "gr", function() vim.lsp.buf.references() end, opts)
+        set("n", "<leader>ra", function() vim.lsp.buf.rename() end, opts)
+        set("n", "<leader>q", function() vim.diagnostic.setloclist() end, opts)
+        set({ 'n', 'x' }, "<leader>fm", function() vim.lsp.buf.format({ async = true }) end, opts)
+    end,
 })
 
 require('mason').setup()
@@ -82,6 +82,23 @@ cmp.setup({
     snippet = {
         expand = function(args)
             require("luasnip").lsp_expand(args.body)
+        end
+    },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered()
+    },
+    formatting = {
+        format = function(entry, vim_item)
+            if vim.tbl_contains({ 'path' }, entry.source.name) then
+                local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
+                if icon then
+                    vim_item.kind = icon
+                    vim_item.kind_hl_group = hl_group
+                    return vim_item
+                end
+            end
+            return require('lspkind').cmp_format({ with_text = false })(entry, vim_item)
         end
     }
 })
