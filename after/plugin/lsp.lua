@@ -1,12 +1,3 @@
--- Add cmp_nvim_lsp capabilities settings to lspconfig
--- This should be executed before you configure any language server
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-    'force',
-    lspconfig_defaults.capabilities,
-    require('cmp_nvim_lsp').default_capabilities()
-)
-
 -- This is where you enable features that only work
 -- if there is a language server active in the file
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -28,18 +19,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
---[[ vim.api.nvim_create_autocmd("BufWritePre", {
-    desc = "Format on save",
-    pattern = "*",
-    callback = function()
-        vim.lsp.buf.format({ async = true })
-    end
-}) ]]
-
 require('mason').setup()
 local mason = require('mason-lspconfig')
 mason.setup({
-    ensure_installed = { 'clangd', 'lua_ls' },
+    ensure_installed = { 'clangd', 'lua_ls', 'jdtls' },
     handlers = {
         function(server_name)
             require('lspconfig')[server_name].setup({})
@@ -47,68 +30,17 @@ mason.setup({
     },
 })
 
-local cmp = require('cmp')
-local cmp_mappings = cmp.mapping.preset.insert({
-    ['<Return>'] = cmp.mapping.confirm({ select = true }),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-            cmp.select_next_item()
-        elseif require("luasnip").expand_or_jumpable() then
-            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-        else
-            fallback()
-        end
-    end, {
-        "i",
-        "s",
-    }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-            cmp.select_prev_item()
-        elseif require("luasnip").jumpable(-1) then
-            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-        else
-            fallback()
-        end
-    end, {
-        "i",
-        "s",
-    }),
-})
+require('blink.cmp').setup({
+    keymap = { preset = 'super-tab' },
 
-cmp.setup({
+    appearance = {
+        nerd_font_variant = 'mono'
+    },
+
+    -- (Default) Only show the documentation popup when manually triggered
+    completion = { documentation = { auto_show = false } },
+
     sources = {
-        { name = "nvim_lsp" },
-        { name = "buffer" },
-        { name = "nvim_lua" },
-        { name = "path" },
-        { name = "luasnip" },
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
-    mapping = cmp_mappings,
-    snippet = {
-        expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-        end
-    },
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered()
-    },
-    formatting = {
-        format = function(entry, vim_item)
-            if vim.tbl_contains({ 'path' }, entry.source.name) then
-                local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
-                if icon then
-                    vim_item.kind = icon
-                    vim_item.kind_hl_group = hl_group
-                    return vim_item
-                end
-            end
-            return require('lspkind').cmp_format({ with_text = false })(entry, vim_item)
-        end
-    }
 })
-
-require("luasnip.loaders.from_vscode").lazy_load()

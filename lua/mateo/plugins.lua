@@ -14,62 +14,25 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.2',
+        tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
+        }
+    },
+    { 'echasnovski/mini.nvim',           version = '*' },
     {
         'rose-pine/neovim',
         name = 'rose-pine',
     },
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     {
-        'VonHeikemen/lsp-zero.nvim',
-        dependencies = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
-            -- Snippets
-            {
-                'L3MON4D3/LuaSnip',
-                build = "make install_jsregexp"
-            },
-            { 'rafamadriz/friendly-snippets' },
-            { 'onsails/lspkind.nvim' }
-        }
-    },
-    {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    },
-    {
-        'lewis6991/gitsigns.nvim',
-        config = function()
-            require('gitsigns').setup()
-        end
-    },
-    {
-        'windwp/nvim-autopairs',
-        event = "InsertEnter",
-        config = function() require('nvim-autopairs').setup {} end
-    },
-    {
         'ThePrimeagen/harpoon',
         dependencies = { 'nvim-lua/plenary.nvim' }
-    },
-    {
-        'NvChad/nvim-colorizer.lua',
-        config = function() require('colorizer').setup() end
     },
     {
         'stevearc/oil.nvim',
@@ -78,6 +41,8 @@ require("lazy").setup({
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
-        "github/copilot.vim",
+        'saghen/blink.cmp',
+        dependencies = { 'rafamadriz/friendly-snippets' },
+        version = '1.*',
     }
 })
