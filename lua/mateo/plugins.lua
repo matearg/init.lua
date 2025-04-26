@@ -44,5 +44,11 @@ require("lazy").setup({
         'saghen/blink.cmp',
         dependencies = { 'rafamadriz/friendly-snippets' },
         version = '1.*',
+    },
+    {
+        "Bekaboo/dropbar.nvim",
+        name = "dropbar",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {},
     }
 })
