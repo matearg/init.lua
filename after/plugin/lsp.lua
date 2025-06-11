@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 require('mason').setup()
 local mason = require('mason-lspconfig')
 mason.setup({
-    ensure_installed = { 'clangd', 'lua_ls', 'jdtls' },
+    ensure_installed = { 'clangd', 'lua_ls', 'jdtls', 'jsonls', 'pylsp' },
     handlers = {
         function(server_name)
             require('lspconfig')[server_name].setup({})
