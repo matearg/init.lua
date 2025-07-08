@@ -4,6 +4,6 @@ require("conform").setup({
 		html = { "prettierd" },
 		c = { "clang-format" },
 		java = { "google-java-format" },
-        python = { "black" }
+		python = { "black" },
 	},
 })
