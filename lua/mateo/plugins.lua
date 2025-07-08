@@ -25,10 +25,7 @@ require("lazy").setup({
         }
     },
     { 'echasnovski/mini.nvim',           version = '*' },
-    {
-        'rose-pine/neovim',
-        name = 'rose-pine',
-    },
+    { "catppuccin/nvim",                 name = "catppuccin", priority = 1000 },
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
     {
         'ThePrimeagen/harpoon',
@@ -45,10 +42,4 @@ require("lazy").setup({
         dependencies = { 'rafamadriz/friendly-snippets' },
         version = '1.*',
     },
-    {
-        "Bekaboo/dropbar.nvim",
-        name = "dropbar",
-        event = { "BufReadPost", "BufNewFile" },
-        opts = {},
-    }
 })
