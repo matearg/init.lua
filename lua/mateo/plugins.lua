@@ -18,15 +18,19 @@ require("lazy").setup({
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
     {
-        "neovim/nvim-lspconfig",
+        'neovim/nvim-lspconfig',
         dependencies = {
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },
         }
     },
+    {
+        'stevearc/conform.nvim',
+        opts = {},
+    },
     { 'echasnovski/mini.nvim',           version = '*' },
-    { "catppuccin/nvim",                 name = "catppuccin", priority = 1000 },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { 'catppuccin/nvim',                 name = 'catppuccin', priority = 1000 },
+    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
     {
         'ThePrimeagen/harpoon',
         dependencies = { 'nvim-lua/plenary.nvim' }
@@ -35,7 +39,7 @@ require("lazy").setup({
         'stevearc/oil.nvim',
         opts = {},
         -- Optional dependencies
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
     },
     {
         'saghen/blink.cmp',

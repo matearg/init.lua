@@ -15,14 +15,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
         set("n", "gr", function() vim.lsp.buf.references() end, opts)
         set("n", "<leader>ra", function() vim.lsp.buf.rename() end, opts)
         set("n", "<leader>q", function() vim.diagnostic.setloclist() end, opts)
-        set({ 'n', 'x' }, "<leader>fm", function() vim.lsp.buf.format({ async = true }) end, opts)
+        -- set({ 'n', 'x' }, "<leader>fm", function() vim.lsp.buf.format({ async = true }) end, opts)
+        set({ 'n', 'x' }, "<leader>fm", function() require("conform").format({ async = true }) end, opts)
     end,
 })
 
 require('mason').setup()
 local mason = require('mason-lspconfig')
 mason.setup({
-    ensure_installed = { 'clangd', 'lua_ls', 'jdtls', 'jsonls', 'pylsp' },
+    ensure_installed = { 'clangd', 'lua_ls', 'jdtls', 'jsonls', 'pylsp', 'html' },
     handlers = {
         function(server_name)
             require('lspconfig')[server_name].setup({})
