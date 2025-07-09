@@ -20,6 +20,7 @@ opt.scrolloff = 8
 opt.clipboard = "unnamedplus"
 opt.updatetime = 50
 opt.pumheight = 10
+opt.laststatus = 3
 opt.termguicolors = true
 opt.splitright = true
 opt.splitbelow = true
