@@ -33,10 +33,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		set("n", "<leader>q", function()
 			vim.diagnostic.setloclist()
 		end, opts)
-		-- set({ 'n', 'x' }, "<leader>fm", function() vim.lsp.buf.format({ async = true }) end, opts)
-		set({ "n", "x" }, "<leader>fm", function()
-			require("conform").format({ async = true })
-		end, opts)
+		-- set({ "n", "x" }, "<leader>fm", function()
+		-- 	require("conform").format({ async = true })
+		-- end, opts)
 	end,
 })
 

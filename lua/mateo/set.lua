@@ -3,7 +3,7 @@ local opt = vim.opt
 opt.nu = true
 opt.rnu = true
 vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
+-- vim.g.netrw_banner = 0
 
 opt.expandtab = true
 opt.tabstop = 4
