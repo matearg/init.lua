@@ -1,15 +1,15 @@
 return {
-	{
-		"stevearc/oil.nvim",
-		opts = {},
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("oil").setup({
-				columns = { "icon" },
-				view_options = { show_hidden = true },
-			})
-
-			vim.keymap.set("n", "-", "<CMD>Oil<CR>")
-		end,
-	},
+	-- {
+	-- 	"stevearc/oil.nvim",
+	-- 	opts = {},
+	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	-- 	config = function()
+	-- 		require("oil").setup({
+	-- 			columns = { "icon" },
+	-- 			view_options = { show_hidden = true },
+	-- 		})
+	--
+	-- 		vim.keymap.set("n", "-", "<CMD>Oil<CR>")
+	-- 	end,
+	-- },
 }

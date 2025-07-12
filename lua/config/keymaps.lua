@@ -9,7 +9,7 @@ set("i", "<C-j>", "<Down>")
 set("i", "<C-k>", "<Up>")
 set("i", "<C-l>", "<Right>")
 
--- set("n", "-", vim.cmd.Ex)
+set("n", "-", vim.cmd.Ex)
 set("n", "<C-d>", "<C-d>zz")
 set("n", "<C-u>", "<C-u>zz")
 set("n", "n", "nzzzv")

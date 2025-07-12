@@ -14,6 +14,9 @@ return {
 			set("n", "<leader>fo", builtin.oldfiles, {})
 			set("n", "<leader>fg", builtin.git_files, {})
 			set("n", "<leader>fh", builtin.help_tags, {})
+			set("n", "<leader>fc", function()
+				builtin.grep_string({ search = vim.fn.input("Find > ") })
+			end)
 		end,
 	},
 }
