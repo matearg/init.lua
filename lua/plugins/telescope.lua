@@ -9,14 +9,14 @@ return {
 		config = function()
 			local builtin = require("telescope.builtin")
 			local set = vim.keymap.set
-			set("n", "<leader>ff", builtin.find_files, {})
-			set("n", "<leader>fb", builtin.buffers, {})
-			set("n", "<leader>fo", builtin.oldfiles, {})
-			set("n", "<leader>fg", builtin.git_files, {})
-			set("n", "<leader>fh", builtin.help_tags, {})
+			set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+			set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
+			set("n", "<leader>fo", builtin.oldfiles, { desc = "Find old files" })
+			set("n", "<leader>fg", builtin.git_files, { desc = "Find git files" })
+			set("n", "<leader>fh", builtin.help_tags, { desc = "Find help tags" })
 			set("n", "<leader>fc", function()
 				builtin.grep_string({ search = vim.fn.input("Find > ") })
-			end)
+			end, { desc = "Find a word in open project" })
 		end,
 	},
 }
