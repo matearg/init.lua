@@ -61,9 +61,6 @@ return {
                     set("n", "<leader>q", function()
                         vim.diagnostic.setloclist()
                     end, { desc = "Show diagnostic loclist" }, opts)
-                    set("n", "<C-f>", function()
-                        vim.diagnostic.setloclist()
-                    end, { desc = "Show diagnostic loclist" }, opts)
                 end,
             })
 
@@ -87,7 +84,7 @@ return {
             })
 
             require("blink-cmp").setup({
-                -- keymap = { preset = "enter" },
+                keymap = { preset = "enter" },
 
                 appearance = {
                     nerd_font_variant = "mono",

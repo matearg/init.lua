@@ -8,7 +8,6 @@ return {
                 css = { "prettierd" },
                 json = { "prettierd" },
                 c = { "clang-format" },
-                -- java = { "google-java-format" },
                 python = { "black" },
             },
             format_on_save = {
