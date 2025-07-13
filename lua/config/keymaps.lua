@@ -21,7 +21,7 @@ set("n", "<C-j>", "<C-w>j")
 set("n", "<C-k>", "<C-w>k")
 set("n", "<C-l>", "<C-w>l")
 set("n", "Q", vim.cmd.bdelete)
-set("n", "<C-w>", vim.cmd.write)
+set("n", "<C-s>", vim.cmd.write)
 set("n", "<C-c>", "<cmd> %y+ <cr>")
 
 set("x", "p", '"_dP')
