@@ -9,6 +9,7 @@ return {
                     "c",
                     "cpp",
                     "java",
+                    "javascript",
                     "lua",
                     "vim",
                     "vimdoc",

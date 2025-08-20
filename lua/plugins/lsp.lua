@@ -70,6 +70,7 @@ return {
                     "pylsp",
                     "html",
                     "cssls",
+                    "ts_ls",
                 },
                 handlers = {
                     function(server_name)

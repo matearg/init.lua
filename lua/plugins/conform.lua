@@ -9,6 +9,7 @@ return {
                 json = { "prettierd" },
                 c = { "clang-format" },
                 python = { "black" },
+                javascript = { "prettierd" },
             },
             format_on_save = {
                 lsp_format = "fallback",
