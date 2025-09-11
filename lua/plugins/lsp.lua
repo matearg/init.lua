@@ -67,7 +67,7 @@ return {
                 pylsp = {},
                 html = {},
                 cssls = {},
-                -- ts_ls = {},
+                ts_ls = {},
             }
 
             local ensure_installed = vim.tbl_keys(servers or {})
@@ -84,7 +84,7 @@ return {
             })
 
             require("blink-cmp").setup({
-                keymap = { preset = "enter" },
+                keymap = { preset = "default" },
 
                 appearance = {
                     nerd_font_variant = "mono",
