@@ -2,8 +2,9 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "williamboman/mason.nvim" },
+            { "williamboman/mason.nvim", opts = {} },
             { "williamboman/mason-lspconfig.nvim" },
+            { "pmizio/typescript-tools.nvim", opts = {} },
             {
                 "saghen/blink.cmp",
                 dependencies = { "rafamadriz/friendly-snippets" },
@@ -16,10 +17,7 @@ return {
                 virtual_text = true,
                 severity_sort = true,
                 float = {
-                    style = "minimal",
                     border = "rounded",
-                    header = "",
-                    prefix = "",
                 },
             })
 
@@ -38,12 +36,12 @@ return {
                     set("n", "ff", function()
                         vim.diagnostic.open_float()
                     end, opts)
-                    set("n", "<C-]>", function()
-                        vim.diagnostic.goto_next()
-                    end, opts)
-                    set("n", "<C-[>", function()
-                        vim.diagnostic.goto_prev()
-                    end, opts)
+                    set("n", "<leader>gs", function()
+                        require("telescope.builtin").lsp_document_symbols()
+                    end, { desc = "Document symbols" }, opts)
+                    set("n", "<leader>ds", function()
+                        require("telescope.builtin").lsp_dynamic_workspace_symbols()
+                    end, { desc = "Worspace symbols" }, opts)
                     set("n", "<leader>ca", function()
                         vim.lsp.buf.code_action()
                     end, { desc = "Code actions" }, opts)
@@ -59,22 +57,28 @@ return {
                 end,
             })
 
-            require("mason").setup()
-            local mason = require("mason-lspconfig")
-            mason.setup({
-                ensure_installed = {
-                    "clangd",
-                    "lua_ls",
-                    "jdtls",
-                    "jsonls",
-                    "pylsp",
-                    "html",
-                    "cssls",
-                    "ts_ls",
-                },
+            local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+            local servers = {
+                clangd = {},
+                lua_ls = {},
+                jdtls = {},
+                jsonls = {},
+                pylsp = {},
+                html = {},
+                cssls = {},
+                -- ts_ls = {},
+            }
+
+            local ensure_installed = vim.tbl_keys(servers or {})
+
+            require("mason-lspconfig").setup({
+                ensure_installed = ensure_installed,
                 handlers = {
                     function(server_name)
-                        require("lspconfig")[server_name].setup({})
+                        local server = servers[server_name] or {}
+                        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+                        require("lspconfig")[server_name].setup(server)
                     end,
                 },
             })
