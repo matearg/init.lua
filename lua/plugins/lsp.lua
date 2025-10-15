@@ -60,14 +60,15 @@ return {
             local capabilities = require("blink.cmp").get_lsp_capabilities()
 
             local servers = {
-                clangd = {},
+                -- clangd = {},
                 lua_ls = {},
-                jdtls = {},
+                -- jdtls = {},
                 jsonls = {},
-                pylsp = {},
+                -- pylsp = {},
                 html = {},
                 cssls = {},
-                ts_ls = {},
+                -- ts_ls = {},
+                angularls = {},
             }
 
             local ensure_installed = vim.tbl_keys(servers or {})

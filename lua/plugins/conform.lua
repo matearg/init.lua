@@ -11,8 +11,8 @@ return {
                 html = { "prettierd" },
                 css = { "prettierd" },
                 json = { "prettierd" },
-                c = { "clang-format" },
-                python = { "black" },
+                -- c = { "clang-format" },
+                -- python = { "black" },
                 javascript = { "prettierd" },
             },
             format_on_save = {
