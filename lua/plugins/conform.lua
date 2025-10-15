@@ -1,26 +1,26 @@
 return {
-    "stevearc/conform.nvim",
-    dependencies = {
-        "zapling/mason-conform.nvim",
-    },
+  "stevearc/conform.nvim",
+  dependencies = {
+    "zapling/mason-conform.nvim",
+  },
 
-    config = function()
-        require("conform").setup({
-            formatters_by_ft = {
-                lua = { "stylua" },
-                html = { "prettierd" },
-                css = { "prettierd" },
-                json = { "prettierd" },
-                -- c = { "clang-format" },
-                -- python = { "black" },
-                javascript = { "prettierd" },
-            },
-            format_on_save = {
-                lsp_format = "fallback",
-                timeout_ms = 500,
-            },
-        })
+  config = function()
+    require("conform").setup({
+      formatters_by_ft = {
+        lua = { "stylua" },
+        html = { "prettierd" },
+        css = { "prettierd" },
+        json = { "prettierd" },
+        -- c = { "clang-format" },
+        -- python = { "black" },
+        javascript = { "prettierd" },
+      },
+      format_on_save = {
+        lsp_format = "fallback",
+        timeout_ms = 500,
+      },
+    })
 
-        require("mason-conform").setup({})
-    end,
+    require("mason-conform").setup({})
+  end,
 }
